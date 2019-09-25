@@ -39,9 +39,11 @@ typedef struct {
 #define CONFIG_ENABLE_VEFFECT    0
 #define CONFIG_ENABLE_SNAPSHOT   1
 #define CONFIG_ENABLE_SOUNDTOUCH 1
+#define TCHAR  char
 #endif
 
-
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define DO_USE_VAR(a) do { a = a; } while (0)
 
 

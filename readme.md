@@ -14,21 +14,22 @@ Currently, this player can smoothly playback many video files, with low cpu and 
 
 features
 ========
-1. low memory and cpu usage
-2. audio/video synchronized very well
-3. gdi and direct3d rendering on win32 platform
-4. support variable speed playback 1% to 100%, 200% ..
-5. waveform and spectrum visual effect
-6. support stream selection
-7. support network media stream playback
-8. support dshow, gdigrab and vfwcap (avdevice of ffmpeg)
-9. take video snapshot, support save into jpeg and png
-10.very fast (async) seek operation taking 0ms delay
-11.support video rotation by ffmpeg avfilter
-12.support step seek forward/backward operation
-13.mediacodec hardware decoding on android
-14.dxva2 hardware acceleration on windows
-15.rotation for direct3d video rendering
+1.  low memory and cpu usage
+2.  audio/video synchronized very well
+3.  gdi and direct3d rendering on win32 platform
+4.  support variable speed playback 1% to 100%, 200% ..
+5.  waveform and spectrum visual effect
+6.  support stream selection
+7.  support network media stream playback
+8.  support dshow, gdigrab and vfwcap (avdevice of ffmpeg)
+9.  take video snapshot, support save into jpeg and png
+10. very fast (async) seek operation taking 0ms delay
+11. support video rotation by ffmpeg avfilter
+12. support step seek forward/backward operation
+13. mediacodec hardware decoding on android
+14. dxva2 hardware acceleration on windows
+15. rotation for direct3d video rendering
+16. support auto-reconnect for live stream playing
 
 
 testplayer
@@ -47,7 +48,7 @@ ctrl+B    - step seek backward
 ctrl+up   - play speed up  
 ctrl+down - play speed down  
 ctrl+T    - switch speed type  
-ctrl+X    - rotate video only for d3d rendering mode  
+ctrl+X    - rotate video (only for d3d rendering mode)  
 ctrl+C    - record current playing media to record.mp4 file  
 
 

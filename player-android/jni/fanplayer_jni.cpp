@@ -1,4 +1,6 @@
 // 包含头文件
+#include <android/native_window.h>
+#include <android/native_window_jni.h>
 #include "fanplayer_jni.h"
 #include "ffplayer.h"
 #include "adev.h"
@@ -115,9 +117,7 @@ static jlong JNICALL nativeGetParam(JNIEnv *env, jobject obj, jlong hplayer, jin
 static void JNICALL nativeSetDisplaySurface(JNIEnv *env, jobject obj, jlong hplayer, jobject surface)
 {
     DO_USE_VAR(obj);
-    void *vdev = NULL;
-    player_getparam((void*)hplayer, PARAM_VDEV_GET_CONTEXT, &vdev);
-    vdev_android_setwindow(vdev, surface);
+    player_setparam((void*)hplayer, PARAM_RENDER_VDEV_WIN, surface);
 }
 
 
@@ -184,3 +184,13 @@ JNIEXPORT JNIEnv* get_jni_env(void)
 }
 //-- jni register --//
 
+void  JniDetachCurrentThread(void) { g_jvm->DetachCurrentThread(); }
+void *JniRequestWinObj(void *data) { return data ? get_jni_env()->NewGlobalRef((jobject)data) : NULL; }
+void  JniReleaseWinObj(void *data) { if (data) get_jni_env()->DeleteGlobalRef((jobject)data);         }
+void  JniPostMessage(void *extra, int32_t msg, int64_t param)
+{
+    JNIEnv   *env = get_jni_env();
+    jobject   obj = (jobject)extra;
+    jmethodID mid = env->GetMethodID(env->GetObjectClass(obj), "internalPlayerEventCallback", "(IJ)V");
+    env->CallVoidMethod(obj, mid, msg, param);
+}
